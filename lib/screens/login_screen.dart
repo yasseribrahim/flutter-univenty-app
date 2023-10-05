@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:univenty/screens/forgot_password_screen.dart';
 import 'package:univenty/screens/home_screen.dart';
 import 'package:univenty/screens/registration_screen.dart';
 import 'package:univenty/auth.dart';
@@ -41,7 +42,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Container(
                   width: 300,
                   height: 300,
-                  child: Image.asset('assets/images/logo.jpg'),
+                  child: Image.asset('assets/images/logo.png'),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(2.0),
+              child: const Text(
+                "Reset Password",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF7343A5),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
                 ),
               ),
             ),
@@ -82,6 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
                               controller: controllerPassword,
+                              obscureText: true,
+                              enableSuggestions: false,
+                              autocorrect: false,
                               validator: MultiValidator([
                                 RequiredValidator(
                                     errorText: 'Please enter Password'),
@@ -108,8 +124,22 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.fromLTRB(180, 0, 0, 0),
-                            child: Text('Forget Password!'),
+                            margin: EdgeInsets.fromLTRB(250, 0, 0, 0),
+                            padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    textStyle: const TextStyle(fontSize: 20),
+                                    backgroundColor:  Colors.yellow,
+                                    ),
+                                onPressed: () {
+                                  Navigator.push(context, new MaterialPageRoute(builder: (context) => new ForgotPasswordScreen()));
+                                },
+                                child: const Text(
+                                  'Forget Password',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                              )
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),

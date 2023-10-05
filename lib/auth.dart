@@ -16,6 +16,10 @@ class Auth {
     return user;
   }
 
+  Future<void> handleResetPassword(email) async {
+    return await auth.sendPasswordResetEmail(email: email);
+  }
+
   Future<bool> handleSignout() async {
     await auth.signOut();
     return true;
