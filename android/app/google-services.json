@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "366526035539",
+    "project_id": "univenty-app",
+    "storage_bucket": "univenty-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366526035539:android:521809f9abb823afd0f8a6",
+        "android_client_info": {
+          "package_name": "com.univenty.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_XxkYGBqEbDAQueOawOrRaSnuoH7Dsg0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
