@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                              controller: controllerEmail,
+                                  controller: controllerEmail,
                                   validator: MultiValidator([
                                     RequiredValidator(
                                         errorText: 'Enter email address'),
@@ -123,24 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(250, 0, 0, 0),
-                            padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    textStyle: const TextStyle(fontSize: 20),
-                                    backgroundColor:  Colors.yellow,
-                                    ),
-                                onPressed: () {
-                                  Navigator.push(context, new MaterialPageRoute(builder: (context) => new ForgotPasswordScreen()));
-                                },
-                                child: const Text(
-                                  'Forget Password',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18),
-                                ),
-                              )
-                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
@@ -151,11 +133,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onPressed: () {
                                   if (_formkey.currentState!.validate()) {
                                     var toaster = new Toaster();
-                                     authHandler.handleSignInEmail(controllerEmail.text, controllerPassword.text)
-                                      .then((User user) {
-                                        toaster.show("Successfully Login");
-                                          Navigator.push(context, new MaterialPageRoute(builder: (context) => new HomeScreen()));
-                                    }).catchError((e) => toaster.show(e.toString()));
+                                    authHandler
+                                        .handleSignInEmail(controllerEmail.text,
+                                            controllerPassword.text)
+                                        .then((User user) {
+                                      toaster.show("Successfully Login");
+                                      Navigator.push(
+                                          context,
+                                          new MaterialPageRoute(
+                                              builder: (context) =>
+                                                  new HomeScreen()));
+                                    }).catchError(
+                                            (e) => toaster.show(e.toString()));
                                   }
                                 },
                                 child: const Text(
@@ -189,7 +178,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                     textStyle: const TextStyle(fontSize: 20),
                                     backgroundColor: Color(0xFF0389C3)),
                                 onPressed: () {
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RegistrationScreen()));
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              RegistrationScreen()));
                                 },
                                 child: const Text(
                                   'Registration',
@@ -200,7 +193,28 @@ class _LoginScreenState extends State<LoginScreen> {
                               width: MediaQuery.of(context).size.width,
                               height: 50,
                             ),
-                          )
+                          ),
+                          Container(
+                              margin: EdgeInsets.fromLTRB(150, 0, 0, 0),
+                              padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  textStyle: const TextStyle(fontSize: 20),
+                                  backgroundColor: Colors.yellow,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      new MaterialPageRoute(
+                                          builder: (context) =>
+                                          new ForgotPasswordScreen()));
+                                },
+                                child: const Text(
+                                  'Forget Password',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                              ))
                         ]),
                   )),
             ),
