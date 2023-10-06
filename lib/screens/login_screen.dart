@@ -126,12 +126,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .handleSignInEmail(controllerEmail.text,
                                             controllerPassword.text)
                                         .then((User user) {
-                                      toaster.show("Successfully Login");
-                                      Navigator.push(
-                                          context,
-                                          new MaterialPageRoute(
-                                              builder: (context) =>
-                                                  new HomeScreen()));
+                                          if(user.emailVerified) {
+                                            toaster.show("Successfully Login");
+                                            Navigator.push(
+                                                context,
+                                                new MaterialPageRoute(
+                                                    builder: (context) =>
+                                                    new HomeScreen()));
+                                          } else{
+                                            toaster.show("Please check your mail and verify to Login");
+                                          }
                                     }).catchError(
                                             (e) => toaster.show(e.toString()));
                                   }
@@ -188,18 +192,20 @@ class _LoginScreenState extends State<LoginScreen> {
                               padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
                               child: RichText(
                                 text: TextSpan(
-                                  style: TextStyle(color: Colors.blue, fontSize: 18),
+                                  style: TextStyle(
+                                      color: Colors.blue, fontSize: 18),
                                   children: <TextSpan>[
                                     TextSpan(
                                         text: 'Forget Password',
-                                        style: TextStyle(color: Colors.blue, fontSize: 18),
+                                        style: TextStyle(
+                                            color: Colors.blue, fontSize: 18),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
                                             Navigator.push(
                                                 context,
                                                 new MaterialPageRoute(
                                                     builder: (context) =>
-                                                    new ForgotPasswordScreen()));
+                                                        new ForgotPasswordScreen()));
                                           })
                                   ],
                                 ),

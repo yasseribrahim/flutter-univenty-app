@@ -12,7 +12,7 @@ class Auth {
   Future<User> handleSignUp(email, password) async {
     UserCredential result = await auth.createUserWithEmailAndPassword(email: email, password: password);
     final User user = result.user!;
-
+    await result.user!.sendEmailVerification();
     return user;
   }
 
