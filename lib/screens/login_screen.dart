@@ -47,18 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(2.0),
-              child: const Text(
-                "Reset Password",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF7343A5),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30.0,
-                ),
-              ),
-            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: Padding(
