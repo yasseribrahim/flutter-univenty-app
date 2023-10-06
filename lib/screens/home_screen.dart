@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:univenty/auth.dart';
-import 'package:univenty/splash_screen.dart';
+import 'package:univenty/main.dart';
 
 class HomeScreen extends StatelessWidget {
   final authHandler = new Auth();

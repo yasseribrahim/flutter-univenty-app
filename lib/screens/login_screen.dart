@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:univenty/screens/forgot_password_screen.dart';
@@ -197,24 +198,24 @@ class _LoginScreenState extends State<LoginScreen> {
                           Container(
                               margin: EdgeInsets.fromLTRB(150, 0, 0, 0),
                               padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  textStyle: const TextStyle(fontSize: 20),
-                                  backgroundColor: Colors.yellow,
+                              child: RichText(
+                                text: TextSpan(
+                                  style: TextStyle(color: Colors.blue, fontSize: 18),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        text: 'Forget Password',
+                                        style: TextStyle(color: Colors.blue, fontSize: 18),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Navigator.push(
+                                                context,
+                                                new MaterialPageRoute(
+                                                    builder: (context) =>
+                                                    new ForgotPasswordScreen()));
+                                          })
+                                  ],
                                 ),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      new MaterialPageRoute(
-                                          builder: (context) =>
-                                          new ForgotPasswordScreen()));
-                                },
-                                child: const Text(
-                                  'Forget Password',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18),
-                                ),
-                              ))
+                              )),
                         ]),
                   )),
             ),

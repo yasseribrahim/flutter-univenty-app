@@ -107,6 +107,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             padding: const EdgeInsets.all(12.0),
                             child: TextFormField(
                               controller: controllerPassword,
+                              obscureText: true,
+                              enableSuggestions: false,
+                              autocorrect: false,
                               validator: MultiValidator([
                                 RequiredValidator(
                                     errorText: 'Please enter Password'),
