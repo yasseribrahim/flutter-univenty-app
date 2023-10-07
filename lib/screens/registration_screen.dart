@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:univenty/screens/home_screen.dart';
 import 'package:univenty/auth.dart';
+import 'package:univenty/screens/login_screen.dart';
 import 'package:univenty/toast.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -82,7 +83,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: TextFormField(
-                                controller: controllerEmail,
+                                  controller: controllerEmail,
                                   validator: MultiValidator([
                                     RequiredValidator(
                                         errorText: 'Enter email address'),
@@ -136,38 +137,43 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: FormField<String>(
-                              builder: (FormFieldState<String> state) {
-                                return InputDecorator(
-                                  decoration: InputDecoration(
-                                      labelStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
-                                      errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
-                                      hintText: 'Please select title',
-                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
-                                  isEmpty: dropdownValue == '',
-                                  child: DropdownButtonHideUnderline(
-                                    child: DropdownButton<String>(
-                                      value: dropdownValue,
-                                      isDense: true,
-                                      onChanged: (String? value) {
-                                        // This is called when the user selects an item.
-                                        setState(() {
-                                          dropdownValue = value!;
-                                        });
-                                      },
-                                      items: titles.map((String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(value),
-                                        );
-                                      }).toList(),
+                              padding: const EdgeInsets.all(12.0),
+                              child: FormField<String>(
+                                builder: (FormFieldState<String> state) {
+                                  return InputDecorator(
+                                    decoration: InputDecoration(
+                                        labelStyle: TextStyle(
+                                            color: Colors.redAccent,
+                                            fontSize: 16.0),
+                                        errorStyle: TextStyle(
+                                            color: Colors.redAccent,
+                                            fontSize: 16.0),
+                                        hintText: 'Please select title',
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5.0))),
+                                    isEmpty: dropdownValue == '',
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton<String>(
+                                        value: dropdownValue,
+                                        isDense: true,
+                                        onChanged: (String? value) {
+                                          // This is called when the user selects an item.
+                                          setState(() {
+                                            dropdownValue = value!;
+                                          });
+                                        },
+                                        items: titles.map((String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                            )
-                          ),
+                                  );
+                                },
+                              )),
                           Padding(
                             padding: EdgeInsets.all(10.0),
                             child: Container(
@@ -178,11 +184,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 onPressed: () {
                                   if (_formkey.currentState!.validate()) {
                                     var toaster = new Toaster();
-                                    auth.handleSignUp(controllerEmail.text, controllerPassword.text)
-                                      .then((User user) {
-                                        toaster.show("Successfully Login");
-                                          Navigator.push(context, new MaterialPageRoute(builder: (context) => new HomeScreen()));
-                                    }).catchError((e) => toaster.show(e.toString()));
+                                    auth
+                                        .handleSignUp(controllerEmail.text,
+                                            controllerPassword.text)
+                                        .then((User user) {
+                                      toaster.show("Successfully Register");
+                                      Navigator.push(
+                                          context,
+                                          new MaterialPageRoute(
+                                              builder: (context) =>
+                                                  new LoginScreen()));
+                                    }).catchError(
+                                            (e) => toaster.show(e.toString()));
                                   }
                                 },
                                 child: Text(
